@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 
 
-const newValue = 3;
+const newValue = 33;
 
 const defaultValue = {
     val: 0,
