@@ -3,7 +3,6 @@ import { useState,useContext } from "react";
 import { Alert } from "react-native";
 import { User } from "../../interfaces";
 
-
 export const login = async () => {
     try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/users', {
@@ -24,7 +23,6 @@ export const user_photo = async () => {
         Alert.alert("Error", JSON.stringify(error));
     }
 }
-
 
 export const login_w_oldlink = async (email: string) => {
     try {

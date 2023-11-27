@@ -1,12 +1,12 @@
 import { Button, Text, TextInput, View,StyleSheet } from "react-native";
 import axios,{AxiosResponse} from "axios";
 import {User} from "../../interfaces";
-import {useContext, useEffect,useState} from 'react';
+import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { login } from "../services/loginServices";
-import { WiserContext } from "../context/ApplicationContext";
-
+import { WiserContext,themes } from "../context/ApplicationContext";
+//import ThemedButton from './themed-button';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -31,9 +31,7 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
     }
     else{
       console.log("entrye değer gir")
-
     }
-
   };
   const handeVisibility = ()=>{
     console.log("Çalıştı 0");
@@ -45,8 +43,12 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
     // setVisible(!visible);
     setemail((prevValue) => prevValue + ' asdadas');
   }
+
+  
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
+
         <Text>Login Screen</Text>
         <Text>{val}</Text>
 

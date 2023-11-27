@@ -19,6 +19,7 @@ import { WiserContextProvider } from './src/context/ApplicationContext';
 
 
 
+
 export type RootStackParamList = {
   Forgot: undefined,
   Login:undefined,
@@ -73,6 +74,7 @@ const StackNavigation = () => {
 type AppScreenProps = NativeStackScreenProps<RootStackParamList>
 
 function App() {
+  
   return (
     <WiserContextProvider>
       <NavigationContainer>
