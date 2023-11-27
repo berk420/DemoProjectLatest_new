@@ -41,7 +41,7 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
     }, 3000);
     console.log("Çalıştı 3")
     // setVisible(!visible);
-    setemail((prevValue) => prevValue + ' asdasdadas');
+    setemail((prevValue) => prevValue + ' asdaxsdsasddfadas');
   }
 
   
