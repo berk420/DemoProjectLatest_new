@@ -1,24 +1,28 @@
 import { Button, Text, TextInput, View,StyleSheet } from "react-native";
 import axios,{AxiosResponse} from "axios";
-import {User} from "../../interfaces";
+//import {User} from "../../interfaces";
 import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { login } from "../services/loginServices";
-import { WiserContext,themes } from "../context/ApplicationContext";
+import UserProvider,{ User, } from "../context/ApplicationContext";
+import { useAppContext } from "../context/AppContext";
 //import ThemedButton from './themed-button';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const HomeScreen = ({navigation}: LoginScreenProps) => {
 
-  const{val,setVal}=useContext(WiserContext);
+  //const{user}=useContext(WiserContext);
 
   const [email, setemail] = useState('Shanna@melissa.tv');
   const [visible, setVisible] = useState(true);
+
+
+  const{userEmail, setUserEmailText} = useAppContext();
+
   const handleButtonPress = async () => { 
     
-    navigation  
     const loginResult = await login();
     const targetEmail = email;
     const targetUser = loginResult.find((user: { email: string; }) => user.email === targetEmail);
@@ -33,35 +37,29 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
       console.log("entrye değer gir")
     }
   };
-  const handeVisibility = ()=>{
-    console.log("Çalıştı 0");
-    setTimeout(() => {
-      console.log("Çalıştı 1");
-      console.log("Çalıştı 2");
-    }, 3000);
-    console.log("Çalıştı 3")
-    // setVisible(!visible);
-    setemail((prevValue) => prevValue + ' asdaxsdsasddfadas');
-  }
 
-  
+  const handleButtonPress_new =() => { 
+    console.log(userEmail);
+    try {
+      setUserEmailText("adasdasd");
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    setTimeout(() => {
+      console.log("User email: ", userEmail)
+    }, 5000);
+    return;
+  };
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
 
         <Text>Login Screen</Text>
-        <Text>{val}</Text>
-
-        <Text></Text>
-
-        <Button
-        title="Increace"
-        onPress={()=>{
-          setVal(val+1);
-        }}></Button>
+        <Button title="Giriş yap" onPress={handleButtonPress_new} />
 
         <Text>---------------------</Text>
-
         <TextInput
         style={styles.entryField}
         placeholder="Veri girin"
@@ -75,8 +73,6 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
           title="Go to Forgot"
           onPress={() => navigation.navigate('Forgot')}
         />
-        <Button title="Set Visible" onPress={handeVisibility}/>
-        {visible && <Text>{email}</Text>}
       </View>
 
 

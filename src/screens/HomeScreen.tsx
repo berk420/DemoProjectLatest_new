@@ -1,19 +1,22 @@
 import { Button, Text, TextInput, View,StyleSheet,FlatList, TouchableOpacity, BackHandler } from "react-native";
 import axios,{AxiosResponse} from "axios";
-import {User} from "../../interfaces";
-import {useEffect,useState} from 'react';
+import {useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
-
+import UserProvider,{ User, WiserContext} from "../context/ApplicationContext";
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   console.log("Home Screen çalıştı");
   const { user_data,all_user_data } = route.params;
+
+
+  const{user,setUser} =useContext(WiserContext);
+
 
   useBackHandler(() => {
     // Geri düğmesine basıldığında uygulamadan çıkın
@@ -32,9 +35,12 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     <View style={styles.container}>
         <Text>Home Screen</Text>
 
+
         <Button
           title="Go to Detail"
         /> 
+      <Text>{user.name}</Text>
+
      <Text>-------------------------------------</Text>
      </View>
 

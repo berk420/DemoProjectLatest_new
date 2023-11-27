@@ -1,8 +1,50 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState,createContext, Dispatch, SetStateAction, ReactNode} from "react";
 //import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export type User={//user adında kullanıcı
+    name:string
+    email:string
+}
+
+export interface WiserContextInterface{//wiser context adında bir interface tanımlandı
+    user:User,
+    setUser : Dispatch<SetStateAction<User>>
+}
+
+//alt satırda kullanıcı belli değilse boş 
+//export const WiserContext= createContext<Partial<WiserContextInterface>>({});
+
+const defaultState={
+    user:{
+        name:"default",
+        email:"default"
+    },
+    setUser: (user:User) => {}
+} as WiserContextInterface
 
 
+
+export const WiserContexasdt= createContext(defaultState)
+
+type UserProvideProps={
+    children:ReactNode
+}
+
+export default function UserProvider({children}:UserProvideProps)
+{
+
+    const[user, setUser] =useState<User>({
+        name:'',
+        email:''
+    });
+
+    return(
+        <WiserContexasdt.Provider value={{user,setUser}}>
+         {children}
+        </WiserContexasdt.Provider>
+    )
+}
+/*
 const newValue = 33;
 
 const defaultValue = {
@@ -37,3 +79,4 @@ const WiserContextProvider = ({children}) => {
     )
 }
 export {WiserContext,WiserContextProvider}
+*/

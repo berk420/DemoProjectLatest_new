@@ -15,21 +15,21 @@ import { getHeaderTitle } from '@react-navigation/elements';
 import { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 import { User } from './interfaces';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { WiserContextProvider } from './src/context/ApplicationContext';
-
-
+import { WiserContext } from './src/context/ApplicationContext';
+import { WiserContextProvider } from './src/context/AppContext';
 
 
 export type RootStackParamList = {
   Forgot: undefined,
   Login:undefined,
-
+  Home:undefined
 }
 
 export type tabbartype={
   Home:{user_data:User, all_user_data:User[] },
   Detail:{user_mail:string},
   MyProfile:undefined;
+  
 
 }
 const Tab = createBottomTabNavigator<tabbartype>();
@@ -108,7 +108,7 @@ function App() {
 
         </Tab.Navigator>
       </NavigationContainer>
-    </WiserContextProvider>
+      </WiserContextProvider>
   );
 }
 
