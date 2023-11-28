@@ -2,7 +2,8 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en from './en.json';
 import tr from './tr.json'
-
+//kütüphanenin dökümanı 
+//https://react.i18next.com/
 const resources = {
   en: {
     translation: en,
