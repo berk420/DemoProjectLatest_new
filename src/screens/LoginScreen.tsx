@@ -1,25 +1,23 @@
 import { Button, Text, TextInput, View,StyleSheet } from "react-native";
 import axios,{AxiosResponse} from "axios";
-//import {User} from "../../interfaces";
+//import {User} from "../../interfaces"; 
 import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { login } from "../services/loginServices";
-import UserProvider,{ User, } from "../context/ApplicationContext";
+//import UserProvider,{ User, } from "../context/ApplicationContext";
 import { useAppContext } from "../context/AppContext";
 //import ThemedButton from './themed-button';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const HomeScreen = ({navigation}: LoginScreenProps) => {
+  const{userEmail, setUserEmailText} = useAppContext();
 
   //const{user}=useContext(WiserContext);
 
   const [email, setemail] = useState('Shanna@melissa.tv');
   const [visible, setVisible] = useState(true);
-
-
-  const{userEmail, setUserEmailText} = useAppContext();
 
   const handleButtonPress = async () => { 
     
@@ -38,18 +36,12 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
     }
   };
 
-  const handleButtonPress_new =() => { 
-    console.log(userEmail);
-    try {
-      setUserEmailText("adasdasd");
+  useEffect(() => {
+    console.log("User email inside useEffect: ", userEmail);  
+  }, [userEmail]);
 
-    } catch (error) {
-      console.log(error);
-    }
-
-    setTimeout(() => {
-      console.log("User email: ", userEmail)
-    }, 5000);
+  function handleButtonPress_new(){
+    setUserEmailText("adasdasd"); 
     return;
   };
 

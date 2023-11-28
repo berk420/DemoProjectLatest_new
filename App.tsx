@@ -15,7 +15,6 @@ import { getHeaderTitle } from '@react-navigation/elements';
 import { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 import { User } from './interfaces';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { WiserContext } from './src/context/ApplicationContext';
 import { WiserContextProvider } from './src/context/AppContext';
 
 
@@ -83,15 +82,13 @@ function App() {
           options={{
             tabBarItemStyle: { display: 'none' },
             headerShown: false,
-
             tabBarStyle:{display: 'none'},
           }}/>
               <Tab.Screen name="Forgot" component={StackNavigation}
-          options={{
+            options={{
             tabBarItemStyle: { display: 'none' },
             headerShown: false,
             tabBarStyle:{display: 'none'},
-
           }}/>
           <Tab.Screen name="Home" component={HomeScreen}
                   options={{

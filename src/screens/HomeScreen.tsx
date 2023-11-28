@@ -6,7 +6,7 @@ import { RootStackParamList } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
-import UserProvider,{ User, WiserContext} from "../context/ApplicationContext";
+//import UserProvider,{ User, WiserContext} from "../context/ApplicationContext";
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
