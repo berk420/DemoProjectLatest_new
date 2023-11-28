@@ -13,6 +13,8 @@ type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
   const{userid,setUserIdText}=useAppContext();
+  const{theme, setThemeText}=useAppContext();
+
 
   useBackHandler(() => {
     // Geri düğmesine basıldığında uygulamadan çıkın
@@ -24,6 +26,8 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     <View style={styles.container}>
       <View style={styles.container}>
         <Text>Home Screen</Text>
+        <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
+
         <Button
           title="Go to Detail"
           onPress={() => navigation.navigate('Detail')}
@@ -65,6 +69,12 @@ const styles = StyleSheet.create({
       display: 'flex',
       alignItems: 'flex-end',
 
+  },
+  whiteText:{
+    color:'#FFFFFF'
+  },
+  darkText:{
+    color:'#000000'
   },
   languageText: {
       fontWeight: 'bold'

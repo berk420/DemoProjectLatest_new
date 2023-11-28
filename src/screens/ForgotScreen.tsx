@@ -7,19 +7,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 type ForgotScreenProps = NativeStackScreenProps<RootStackParamList, 'Forgot'>;
 
-const DetailsScreen = ({navigation}: ForgotScreenProps) => {
+const ForgotScreen = ({navigation}: ForgotScreenProps) => {
   return (
     <SafeAreaView style={{ flex: 1,alignItems: 'center', justifyContent: 'center' }}>
         <Text>Forgot Screen</Text>
         
         <Button
           title="Return to login"
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate('LoginScreen')}
         />
         
       </SafeAreaView>
   )
 }
 
-export default DetailsScreen
+export default ForgotScreen
 

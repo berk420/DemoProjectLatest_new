@@ -1,4 +1,4 @@
-import { Button, Text, TextInput, View,StyleSheet } from "react-native";
+import { Button, Text, TextInput, View,StyleSheet, useColorScheme, TouchableOpacity } from "react-native";
 import axios,{AxiosResponse} from "axios";
 //import {User} from "../../interfaces"; 
 import { useContext, useEffect,useState} from 'react';
@@ -9,18 +9,17 @@ import { login } from "../services/loginServices";
 import { useAppContext } from "../context/AppContext";
 //import ThemedButton from './themed-button';
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
-const HomeScreen = ({navigation}: LoginScreenProps) => {
+const LoginScreen = ({navigation}: LoginScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
   const{userid,setUserIdText}=useAppContext();
-  //const{user}=useContext(WiserContext);
-
   const [email, setemail] = useState('Shanna@melissa.tv');
-  const [visible, setVisible] = useState(true);
+  const{theme, setThemeText}=useAppContext();
+  //const [theme, settheme] = useState(true);
+  //const isDarkmode=useColorScheme();
 
   const handleButtonPress = async () => { 
-    
     const all_User_data = await login();
     const User_information = all_User_data.find((user: { email: string; }) => user.email === email);
     const User_information_email = User_information?.email || null;
@@ -37,11 +36,36 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
     }
   };
 
+/*
+  const handleToggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    toggleTheme(newTheme);
+  };
+
+  
+
+  
+*/
+useEffect(() => {
+  console.log(theme);
+}, [theme]);   
+const handleButtonPress_theme = async () => {
+
+  if(theme=="light"){
+    setThemeText('dark');
+  }
+  else if(theme=="dark"){
+    setThemeText('light')
+  }
+
+};
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
 
         <Text>Login Screen</Text>
-
+        
+        <Button title="Change theme" onPress={handleButtonPress_theme} />
+        <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
         <Text>---------------------</Text>
         <TextInput
         style={styles.entryField}
@@ -62,7 +86,7 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
   )
 }
 
-export default HomeScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -70,6 +94,13 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
   },
+  whiteText:{
+    color:'#FFFFFF'
+  },
+  darkText:{
+    color:'#000000'
+  },
+
   languageSelector: {
       display: 'flex',
       alignItems: 'flex-end',

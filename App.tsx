@@ -20,28 +20,29 @@ import { WiserContextProvider } from './src/context/AppContext';
 
 export type RootStackParamList = {
   Forgot: undefined,
-  Login:undefined,
-  Home:undefined
+  LoginScreen:undefined,
+  Home:undefined,
+  Detail:undefined,
+  MyProfile:undefined;
 }
 
 export type tabbartype={
   Home:{user_data:User, all_user_data:User[] },
   Detail:{user_mail:string},
   MyProfile:undefined;
-  
+  LoginScreen:undefined;
+  Forgot:undefined;
 
 }
 const Tab = createBottomTabNavigator<tabbartype>();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-
 const StackNavigation = () => {
   return (
 
-<Stack.Navigator >
-
-<Stack.Screen name="Login" component={LoginScreen} 
+<Stack.Navigator initialRouteName="LoginScreen" >
+<Stack.Screen name="LoginScreen" component={LoginScreen} 
    options={({ navigation, route }) => ({
     headerBackTitleVisible: false,
     headerShown: false,
@@ -77,19 +78,22 @@ function App() {
   return (
     <WiserContextProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Login" >
-          <Tab.Screen name="Login" component={StackNavigation}
+        <Tab.Navigator>
+
+          <Tab.Screen name="LoginScreen" component={StackNavigation}
           options={{
             tabBarItemStyle: { display: 'none' },
             headerShown: false,
             tabBarStyle:{display: 'none'},
           }}/>
-              <Tab.Screen name="Forgot" component={StackNavigation}
+          <Tab.Screen name="Forgot" component={StackNavigation}
             options={{
             tabBarItemStyle: { display: 'none' },
             headerShown: false,
             tabBarStyle:{display: 'none'},
           }}/>
+
+          
           <Tab.Screen name="Home" component={HomeScreen}
                   options={{
                     headerShown: false

@@ -9,9 +9,9 @@ import { user_photo } from "../services/loginServices";
 import { Int32 } from "react-native/Libraries/Types/CodegenTypes";
 import { useAppContext } from "../context/AppContext";
 
-type ConfiemScreenProps = NativeStackScreenProps<RootStackParamList, 'Detail'>;
+type DetailScreenProps = NativeStackScreenProps<RootStackParamList, 'Detail'>;
 
-const HomeScreen = ({route,navigation}: ConfiemScreenProps) => 
+const DetailScreen = ({route,navigation}: DetailScreenProps) => 
 {
   const [img, setimg]=useState('');
   const{userEmail, setUserEmailText} = useAppContext()
@@ -51,4 +51,4 @@ const HomeScreen = ({route,navigation}: ConfiemScreenProps) =>
   )
 }
 
-export default HomeScreen
+export default DetailScreen
