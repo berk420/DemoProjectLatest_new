@@ -11,53 +11,37 @@ import { useAppContext } from "../context/AppContext";
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
-  const all_user_data= null;
-  console.log("Home Screen çalıştı");
-
-  //sayfalar arası veri aktarıyor
-  //const { user_data,all_user_data } = route.params;
-
   const{userEmail, setUserEmailText} = useAppContext();
+  const{userid,setUserIdText}=useAppContext();
 
   useBackHandler(() => {
     // Geri düğmesine basıldığında uygulamadan çıkın
     BackHandler.exitApp();
     return true;
   });
-  
-  const handleEmailClick = () => {console.log("flatlist")  };
-  
+    
   return (
     <View style={styles.container}>
-    <View style={styles.container}>
+      <View style={styles.container}>
         <Text>Home Screen</Text>
         <Button
           title="Go to Detail"
+          onPress={() => navigation.navigate('Detail')}
+
         />
-     <Text>-------------------------------------</Text>
-     </View>
-     <View style={styles.container}>
-
-      <Text>Details Screen</Text>
-      <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center' ,flexDirection: 'row'}}>
-      <View style={ {flex: 1,alignItems:'flex-start', justifyContent: 'center'}}>
-
-      <FlatList
-        data={all_user_data}
-        renderItem={({item}) => <TouchableOpacity onPress={() => handleEmailClick()}>
-        <Text style={styles.item}>{item.email}</Text>
-      </TouchableOpacity>}
-      />
+        <Text>-------------------------------------</Text>
       </View>
-
-      <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
-      <Text>store dan geliyor</Text>      
-      <Text>name:{userEmail}</Text>
-      <Text>--------------------------</Text>
       
-      </View>
-      </View>
-      </View>
+        <View style={styles.container}>
+          <Text>Details Screen</Text>
+          <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
+            <Text>store dan geliyor</Text>      
+            <Text>name:{userEmail}</Text>
+            <Text>id:{userid}</Text>
+
+            <Text>--------------------------</Text>
+          </View>
+        </View>
       </View>
   )
 }

@@ -13,7 +13,7 @@ type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const HomeScreen = ({navigation}: LoginScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
-
+  const{userid,setUserIdText}=useAppContext();
   //const{user}=useContext(WiserContext);
 
   const [email, setemail] = useState('Shanna@melissa.tv');
@@ -21,35 +21,26 @@ const HomeScreen = ({navigation}: LoginScreenProps) => {
 
   const handleButtonPress = async () => { 
     
-    const loginResult = await login();
-    const targetEmail = email;
-    const targetUser = loginResult.find((user: { email: string; }) => user.email === targetEmail);
-    
-    if(targetUser){
-      console.log("GİRDİ");
-      //console.log("tüm veri:",loginResult);
-      //console.log("kullanıcı bilgileri:",targetUser);
-      navigation.navigate('Home',{user_data:targetUser, all_user_data:loginResult});
+    const all_User_data = await login();
+    const User_information = all_User_data.find((user: { email: string; }) => user.email === email);
+    const User_information_email = User_information?.email || null;
+    const User_information_id = User_information?.id || null;
+
+    if(User_information){
+      console.log(User_information_id);
+      setUserIdText(User_information_id);
+      setUserEmailText(User_information_email);
+      navigation.navigate('Home');
     }
     else{
       console.log("entrye değer gir")
     }
   };
 
-  useEffect(() => {
-    console.log("User email inside useEffect: ", userEmail);  
-  }, [userEmail]);
-
-  function handleButtonPress_new(){
-    setUserEmailText("adasdasd"); 
-    return;
-  };
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
 
         <Text>Login Screen</Text>
-        <Button title="Giriş yap" onPress={handleButtonPress_new} />
 
         <Text>---------------------</Text>
         <TextInput

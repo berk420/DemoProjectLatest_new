@@ -2,19 +2,19 @@ import React, { useContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type User = {
-    //id:number;
+    iuseridd:number;
     email: string;
     userName: string;
 }
  
 type ContextType = {
     //properties
-    //id:number;
+    userid:number;
     userEmail       : string;
 
     //function
     setUserEmailText : (email: string) => void;
-    //setUserIdText :(id:number)=>void;
+    setUserIdText :(userid:number)=>void;
 }
  
 type ProviderProps = {
@@ -30,25 +30,23 @@ export function useAppContext(){
 }
 
 export function WiserContextProvider ({children} : ProviderProps){
-    const [userEmail, setUserEmail] = useState("aydıncan");
-    //const [userid,setUserId]=useState(3);
+    const [userEmail, setUserEmail] = useState("default");
+    const [userid,setUserId]=useState(0);
 
     //Refactor edilecek.
     const setUserEmailText = (email: string) =>{
-        console.log("Email set edilecek, ", email);
         setUserEmail(email);
     }
-/*
-    const setUserIdText = (id: number) =>{
-        console.log("id set edilecek, ", id);
-        setUserId(id);
+
+    const setUserIdText = (userid: number) =>{
+        setUserId(userid);
     }
- */
+ 
     const value: ContextType = {
-        //id,
+        userid,
         userEmail,
         setUserEmailText,
-        //setUserIdText,
+        setUserIdText,
     }
  //value prop'u ile WiserContext'e sağlayan kod bu 
     return <WiserContext.Provider value={value}>{children}</WiserContext.Provider>
