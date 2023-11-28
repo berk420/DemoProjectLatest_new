@@ -36,33 +36,6 @@ export function WiserContextProvider ({children} : ProviderProps){
     const [userEmail, setUserEmail] = useState("default");
     const [userid,setUserId]=useState(0);
     const [theme, setTheme] = useState('light');
-
-    //bakılacak --------------------------------
-    /*
-    useEffect(() => {
-        // Load saved theme from storage
-        const getTheme = async () => {
-          try {
-            const savedTheme = await AsyncStorage.getItem('theme');
-
-            if (savedTheme) {
-              setTheme(savedTheme);
-            }
-          } catch (error) {
-            console.log('Error loading theme:', error);
-          }
-        };
-        getTheme();
-      }, []);
-
-      const toggleTheme = newTheme => {
-        setTheme(newTheme);
-        AsyncStorage.setItem('theme', newTheme)
-      };
-      */
-    //bakılacak --------------------------------
-
-
     //Refactor edilecek.
     const setUserEmailText = (email: string) =>{
         setUserEmail(email);
@@ -76,7 +49,6 @@ export function WiserContextProvider ({children} : ProviderProps){
         setTheme(theme);
     }
     
- 
     const value: ContextType = {
         userid,
         userEmail,

@@ -17,7 +17,6 @@ import { User } from './interfaces';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { WiserContextProvider } from './src/context/AppContext';
 
-
 export type RootStackParamList = {
   Forgot: undefined,
   LoginScreen:undefined,
@@ -32,7 +31,6 @@ export type tabbartype={
   MyProfile:undefined;
   LoginScreen:undefined;
   Forgot:undefined;
-
 }
 const Tab = createBottomTabNavigator<tabbartype>();
 
@@ -41,7 +39,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const StackNavigation = () => {
   return (
 
-<Stack.Navigator initialRouteName="LoginScreen" >
+<Stack.Navigator >
 <Stack.Screen name="LoginScreen" component={LoginScreen} 
    options={({ navigation, route }) => ({
     headerBackTitleVisible: false,
@@ -58,7 +56,6 @@ const StackNavigation = () => {
   options={({ navigation, route }) => ({
     headerShown: false,
     tabBarVisible: false,
-
     headerBackTitleVisible: false,
     headerTitle: "Forgot Password Screen",
     headerStyle: {
@@ -74,12 +71,10 @@ const StackNavigation = () => {
 type AppScreenProps = NativeStackScreenProps<RootStackParamList>
 
 function App() {
-  
   return (
     <WiserContextProvider>
       <NavigationContainer>
-        <Tab.Navigator>
-
+        <Tab.Navigator initialRouteName="LoginScreen">
           <Tab.Screen name="LoginScreen" component={StackNavigation}
           options={{
             tabBarItemStyle: { display: 'none' },
@@ -92,8 +87,6 @@ function App() {
             headerShown: false,
             tabBarStyle:{display: 'none'},
           }}/>
-
-          
           <Tab.Screen name="Home" component={HomeScreen}
                   options={{
                     headerShown: false

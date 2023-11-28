@@ -12,12 +12,11 @@ import { useAppContext } from "../context/AppContext";
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 const LoginScreen = ({navigation}: LoginScreenProps) => {
+  const [email, setemail] = useState('Shanna@melissa.tv');
   const{userEmail, setUserEmailText} = useAppContext();
   const{userid,setUserIdText}=useAppContext();
-  const [email, setemail] = useState('Shanna@melissa.tv');
   const{theme, setThemeText}=useAppContext();
-  //const [theme, settheme] = useState(true);
-  //const isDarkmode=useColorScheme();
+  const[lang,setlang]=useState("en");
 
   const handleButtonPress = async () => { 
     const all_User_data = await login();
@@ -36,29 +35,24 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
     }
   };
 
-/*
-  const handleToggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    toggleTheme(newTheme);
-  };
-
-  
-
-  
-*/
-useEffect(() => {
-  console.log(theme);
-}, [theme]);   
 const handleButtonPress_theme = async () => {
-
   if(theme=="light"){
     setThemeText('dark');
   }
   else if(theme=="dark"){
     setThemeText('light')
   }
+}
 
-};
+const handleButtonPress_language = async () => {
+  if(lang=="en"){
+    setlang('tr');
+  }
+  else if(lang=="tr"){
+    setlang('en')
+  }
+}
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
 
@@ -67,6 +61,11 @@ const handleButtonPress_theme = async () => {
         <Button title="Change theme" onPress={handleButtonPress_theme} />
         <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
         <Text>---------------------</Text>
+        <Button title="Change language" onPress={handleButtonPress_language}/>
+        <Text>{lang}</Text>
+        <Text>Text</Text>
+        <Text>---------------------</Text>
+
         <TextInput
         style={styles.entryField}
         placeholder="Veri girin"
