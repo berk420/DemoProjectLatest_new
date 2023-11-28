@@ -17,6 +17,8 @@ const HomeScreen = ({route,navigation}: ConfiemScreenProps) =>
   const [id, setid] = useState('');
   const [img, setimg]=useState('');
 
+
+  //bu sayfaya kullanıcının id değerini getirmemiz gerekiyor 
   const { user_mail,user_id } = route.params;
 
   const handleButtonPress = async () => { 

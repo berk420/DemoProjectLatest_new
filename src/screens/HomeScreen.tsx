@@ -11,6 +11,7 @@ import { useAppContext } from "../context/AppContext";
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
+  const all_user_data= null;
   console.log("Home Screen çalıştı");
 
   //sayfalar arası veri aktarıyor
@@ -24,12 +25,9 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     return true;
   });
 
-  /*
-  const handleEmailClick = (email,id) => {
-    navigation.navigate('Detail',{user_mail:email,user_id:id});
-  };
-  */
-
+  
+  const handleEmailClick = () => {console.log("flatlist")  };
+  
   return (
     <View style={styles.container}>
     <View style={styles.container}>
@@ -52,7 +50,7 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
 
     <FlatList
         data={all_user_data}
-        renderItem={({item}) => <TouchableOpacity onPress={() => handleEmailClick(item.email,item.id)}>
+        renderItem={({item}) => <TouchableOpacity onPress={() => handleEmailClick()}>
         <Text style={styles.item}>{item.email}</Text>
       </TouchableOpacity>}
       />
@@ -60,11 +58,9 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
 
       <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
       <Text>store dan geliyor</Text>      
-      <Text></Text>
+      <Text>name:{userEmail}</Text>
       <Text>--------------------------</Text>
-      <Text>Name: {user_data.name}</Text>
-      <Text>Username: {user_data.username}</Text>
-      <Text>Email: {user_data.email}</Text>
+      
       </View>
       </View>
       </View>
