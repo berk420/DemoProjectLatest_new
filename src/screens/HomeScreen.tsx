@@ -24,7 +24,6 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     BackHandler.exitApp();
     return true;
   });
-
   
   const handleEmailClick = () => {console.log("flatlist")  };
   
@@ -37,18 +36,13 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
         />
      <Text>-------------------------------------</Text>
      </View>
-
      <View style={styles.container}>
 
       <Text>Details Screen</Text>
       <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center' ,flexDirection: 'row'}}>
-
-
       <View style={ {flex: 1,alignItems:'flex-start', justifyContent: 'center'}}>
 
-
-
-    <FlatList
+      <FlatList
         data={all_user_data}
         renderItem={({item}) => <TouchableOpacity onPress={() => handleEmailClick()}>
         <Text style={styles.item}>{item.email}</Text>
