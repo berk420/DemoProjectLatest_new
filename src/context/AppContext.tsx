@@ -17,7 +17,7 @@ type ProviderProps = {
     children: React.ReactNode;
 }
  
-const WiserContext =React.createContext<ContextType>({} as ContextType);
+export const WiserContext =React.createContext<ContextType>({} as ContextType);
  
 export function useAppContext(){
     return useContext(WiserContext);

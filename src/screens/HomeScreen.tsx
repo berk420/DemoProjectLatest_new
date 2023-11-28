@@ -6,17 +6,17 @@ import { RootStackParamList } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
-//import UserProvider,{ User, WiserContext} from "../context/ApplicationContext";
+import { useAppContext } from "../context/AppContext";
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   console.log("Home Screen çalıştı");
-  const { user_data,all_user_data } = route.params;
 
+  //sayfalar arası veri aktarıyor
+  //const { user_data,all_user_data } = route.params;
 
-  const{user,setUser} =useContext(WiserContext);
-
+  const{userEmail, setUserEmailText} = useAppContext();
 
   useBackHandler(() => {
     // Geri düğmesine basıldığında uygulamadan çıkın
@@ -24,23 +24,19 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     return true;
   });
 
+  /*
   const handleEmailClick = (email,id) => {
-    
     navigation.navigate('Detail',{user_mail:email,user_id:id});
-
   };
+  */
 
   return (
     <View style={styles.container}>
     <View style={styles.container}>
         <Text>Home Screen</Text>
-
-
         <Button
           title="Go to Detail"
-        /> 
-      <Text>{user.name}</Text>
-
+        />
      <Text>-------------------------------------</Text>
      </View>
 
@@ -52,16 +48,20 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
 
       <View style={ {flex: 1,alignItems:'flex-start', justifyContent: 'center'}}>
 
+
+
     <FlatList
         data={all_user_data}
         renderItem={({item}) => <TouchableOpacity onPress={() => handleEmailClick(item.email,item.id)}>
         <Text style={styles.item}>{item.email}</Text>
-
       </TouchableOpacity>}
       />
       </View>
 
       <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
+      <Text>store dan geliyor</Text>      
+      <Text></Text>
+      <Text>--------------------------</Text>
       <Text>Name: {user_data.name}</Text>
       <Text>Username: {user_data.username}</Text>
       <Text>Email: {user_data.email}</Text>
