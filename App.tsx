@@ -16,6 +16,7 @@ import { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 import { User } from './interfaces';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { WiserContextProvider } from './src/context/AppContext';
+import './src/locales/index'
 
 export type RootStackParamList = {
   Forgot: undefined,

@@ -1,13 +1,11 @@
 import { Button, Text, TextInput, View,StyleSheet, useColorScheme, TouchableOpacity } from "react-native";
-import axios,{AxiosResponse} from "axios";
-//import {User} from "../../interfaces"; 
 import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { login } from "../services/loginServices";
-//import UserProvider,{ User, } from "../context/ApplicationContext";
 import { useAppContext } from "../context/AppContext";
-//import ThemedButton from './themed-button';
+import { useTranslation } from "react-i18next";
+
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
@@ -18,6 +16,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const{theme, setThemeText}=useAppContext();
   const[lang,setlang]=useState("en");
 
+  const {t} = useTranslation();
   const handleButtonPress = async () => { 
     const all_User_data = await login();
     const User_information = all_User_data.find((user: { email: string; }) => user.email === email);
@@ -33,7 +32,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
     else{
       console.log("entrye değer gir")
     }
-  };
+  }; 
 
 const handleButtonPress_theme = async () => {
   if(theme=="light"){
@@ -64,14 +63,17 @@ const handleButtonPress_language = async () => {
         <Button title="Change language" onPress={handleButtonPress_language}/>
         <Text>{lang}</Text>
         <Text>Text</Text>
-        <Text>---------------------</Text>
 
+        <Text>---------------------</Text>
+        <Text>{t("wiserSenseLocalization.email")}</Text>
+
+        <Text>---------------------</Text>
+        <Text>{t("wiserSenseLocalization.email")}</Text>
         <TextInput
         style={styles.entryField}
         placeholder="Veri girin"
         onChangeText={text => setemail(text)}
-        value={email}
-      />
+        value={email}/>
 
       <Button title="Giriş yap" onPress={handleButtonPress} />
       <Text>------------------</Text>

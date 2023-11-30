@@ -2,8 +2,7 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en from './en.json';
 import tr from './tr.json'
-//kütüphanenin dökümanı 
-//https://react.i18next.com/
+
 const resources = {
   en: {
     translation: en,
@@ -15,7 +14,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'tr',
+  lng: 'en',
   fallbackLng: 'en',
   compatibilityJSON: 'v3',
   interpolation: {
