@@ -5,6 +5,13 @@ import { RootStackParamList } from "../../App";
 import { login } from "../services/loginServices";
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+
+const lngs={
+  en:{nativeName:"English"},
+  tr:{nativeName:"Türkçe"}
+
+}
 
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
@@ -17,6 +24,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const[lang,setlang]=useState("en");
 
   const {t} = useTranslation();
+
   const handleButtonPress = async () => { 
     const all_User_data = await login();
     const User_information = all_User_data.find((user: { email: string; }) => user.email === email);
@@ -65,6 +73,9 @@ const handleButtonPress_language = async () => {
         <Text>Text</Text>
 
         <Text>---------------------</Text>
+        {Object.keys(lngs).map((lng)=>(
+          <Button title="degistir" key={lng} onPress={()=>i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}></Button>
+        ))}
         <Text>{t("wiserSenseLocalization.email")}</Text>
 
         <Text>---------------------</Text>
