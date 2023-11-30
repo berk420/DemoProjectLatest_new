@@ -9,10 +9,7 @@ import i18n from "i18next";
 
 const lngs={
   en:{nativeName:"English"},
-  tr:{nativeName:"Türkçe"}
-
-}
-
+  tr:{nativeName:"Türkçe"}}
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
@@ -22,7 +19,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const{userid,setUserIdText}=useAppContext();
   const{theme, setThemeText}=useAppContext();
   const[lang,setlang]=useState("en");
-
+  
   const {t} = useTranslation();
 
   const handleButtonPress = async () => { 
@@ -50,16 +47,6 @@ const handleButtonPress_theme = async () => {
     setThemeText('light')
   }
 }
-
-const handleButtonPress_language = async () => {
-  if(lang=="en"){
-    setlang('tr');
-  }
-  else if(lang=="tr"){
-    setlang('en')
-  }
-}
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
 
@@ -67,25 +54,20 @@ const handleButtonPress_language = async () => {
         
         <Button title="Change theme" onPress={handleButtonPress_theme} />
         <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
-        <Text>---------------------</Text>
-        <Button title="Change language" onPress={handleButtonPress_language}/>
-        <Text>{lang}</Text>
-        <Text>Text</Text>
 
         <Text>---------------------</Text>
         {Object.keys(lngs).map((lng)=>(
-          <Button title="degistir" key={lng} onPress={()=>i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}></Button>
+          <Button title={lng} key={lng} onPress={()=>i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}></Button>
         ))}
-        <Text>{t("wiserSenseLocalization.email")}</Text>
-
+        <Text>{t("wiserSenseLocalization.Language")}</Text>
         <Text>---------------------</Text>
+
         <Text>{t("wiserSenseLocalization.email")}</Text>
         <TextInput
         style={styles.entryField}
         placeholder="Veri girin"
         onChangeText={text => setemail(text)}
         value={email}/>
-
       <Button title="Giriş yap" onPress={handleButtonPress} />
       <Text>------------------</Text>
        <Button

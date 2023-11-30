@@ -7,6 +7,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
 import { useAppContext } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
+
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -14,6 +16,7 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
   const{userid,setUserIdText}=useAppContext();
   const{theme, setThemeText}=useAppContext();
+  const {t} = useTranslation();
 
 
   useBackHandler(() => {
@@ -27,15 +30,16 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
       <View style={styles.container}>
         <Text>Home Screen</Text>
         <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
-
+        
         <Button
           title="Go to Detail"
-          onPress={() => navigation.navigate('Detail')}
+          onPress={() => navigation.navigate('Detail')}/>
 
-        />
         <Text>-------------------------------------</Text>
+        <Text>{t("wiserSenseLocalization.Language")}</Text>
+        <Text>-------------------------------------</Text>
+
       </View>
-      
         <View style={styles.container}>
           <Text>Details Screen</Text>
           <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
