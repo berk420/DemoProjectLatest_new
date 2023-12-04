@@ -2,10 +2,10 @@ import { Button, Text, View } from "react-native";
 
 import React, { useEffect } from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { stacktype } from "../../App";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-type ForgotScreenProps = NativeStackScreenProps<RootStackParamList, 'Forgot'>;
+type ForgotScreenProps = NativeStackScreenProps<stacktype, 'Forgot'>;
 
 const ForgotScreen = ({navigation}: ForgotScreenProps) => {
   return (

@@ -1,7 +1,7 @@
 import { Button, Text, TextInput, View,StyleSheet, useColorScheme, TouchableOpacity } from "react-native";
 import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { stacktype } from "../../App";
 import { login } from "../services/loginServices";
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ const lngs={
   en:{nativeName:"English"},
   tr:{nativeName:"Türkçe"}}
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+type LoginScreenProps = NativeStackScreenProps<stacktype, 'LoginScreen'>;
 
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [email, setemail] = useState('Shanna@melissa.tv');
@@ -32,12 +32,13 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
       console.log(User_information_id);
       setUserIdText(User_information_id);
       setUserEmailText(User_information_email);
+      
       navigation.navigate('Home');
     }
     else{
       console.log("entrye değer gir")
     }
-  }; 
+  };
 
 const handleButtonPress_theme = async () => {
   if(theme=="light"){

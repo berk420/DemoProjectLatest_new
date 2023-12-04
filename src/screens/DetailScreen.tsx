@@ -3,13 +3,13 @@ import {useEffect,useState} from 'react';
 
 import React from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { stacktype } from "../../App";
 import { useBackHandler } from '@react-native-community/hooks';
 import { user_photo } from "../services/loginServices";
 import { Int32 } from "react-native/Libraries/Types/CodegenTypes";
 import { useAppContext } from "../context/AppContext";
 
-type DetailScreenProps = NativeStackScreenProps<RootStackParamList, 'Detail'>;
+type DetailScreenProps = NativeStackScreenProps<stacktype, 'Detail'>;
 
 const DetailScreen = ({route,navigation}: DetailScreenProps) => 
 {

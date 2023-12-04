@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import React from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { stacktype } from "../../App";
 import MyProfile from './MyProfileScreen';
 import MyProfileScreen from "./MyProfileScreen";
 

@@ -3,7 +3,7 @@ import axios,{AxiosResponse} from "axios";
 import {User} from "../../interfaces";
 import {useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList, tabbartype } from "../../App";
+import { stacktype, tabbartype } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useBackHandler } from '@react-native-community/hooks';
 

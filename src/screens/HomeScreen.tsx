@@ -2,7 +2,7 @@ import { Button, Text, TextInput, View,StyleSheet,FlatList, TouchableOpacity, Ba
 import axios,{AxiosResponse} from "axios";
 import {useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { stacktype } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
@@ -10,7 +10,7 @@ import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
 
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type HomeScreenProps = NativeStackScreenProps<stacktype, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
