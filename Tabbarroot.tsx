@@ -1,3 +1,4 @@
+
 // In App.js in a new project
 import 'react-native-gesture-handler';
 import * as React from 'react';
@@ -17,42 +18,48 @@ import { User } from './interfaces';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { WiserContextProvider } from './src/context/AppContext';
 import './src/locales/index'
-import Tabbarroot from './Tabbarroot';
-import Stackroot from './Stackroot';
 
-export type stacktype = {
-  Tabbarroot:undefined
-  Stackroot:undefined,
+export type tabbartype={
+  Home:undefined,
+  Detail:undefined,
+  MyProfile:undefined;
 }
 
-const Stack = createNativeStackNavigator<stacktype>();
+const Tab = createBottomTabNavigator<tabbartype>();
 
-function App() {
+function Tabbarroot() {
   return (
     <WiserContextProvider>
-      <NavigationContainer>
-        <Stack.Navigator >
-        <Stack.Screen name="Stackroot" component={Stackroot}
+        <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name="MyProfile" component={MyProfileScreen}
                 options={({ navigation, route }) => ({
                 headerBackTitleVisible: false,
                 headerShown: false,
                 tabBarVisible: false,
-                headerTitle: "null",
+                headerTitle: "myprofile Screen",
                 headerStyle: {
-                  backgroundColor: '#808080',
+                    backgroundColor: '#808080',
                 }})}/>
-          <Stack.Screen name="Tabbarroot" component={Tabbarroot}
+        <Tab.Screen name="Home" component={HomeScreen}
                 options={({ navigation, route }) => ({
                 headerBackTitleVisible: false,
                 headerShown: false,
                 tabBarVisible: false,
-                headerTitle: "null",
+                headerTitle: "home Screen",
+                headerStyle: {
+                backgroundColor: '#808080',
+                }})}/>
+            <Tab.Screen name="Detail" component={DetailScreen}
+                options={({ navigation, route }) => ({
+                headerBackTitleVisible: false,
+                headerShown: false,
+                tabBarVisible: false,
+                headerTitle: "detail Screen",
                 headerStyle: {
                   backgroundColor: '#808080',
                 }})}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </WiserContextProvider>
+        </Tab.Navigator>
+      </WiserContextProvider>
   );
 }
 
@@ -79,6 +86,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
-
+export default Tabbarroot;
 

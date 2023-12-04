@@ -1,11 +1,14 @@
 import { Button, Text, TextInput, View,StyleSheet, useColorScheme, TouchableOpacity } from "react-native";
 import { useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { stacktype } from "../../App";
+import { stacktype } from "../../Stackroot";
 import { login } from "../services/loginServices";
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import Tabbarroot from '../../Tabbarroot';
+import Stackroot from '../../Stackroot';
+
 
 const lngs={
   en:{nativeName:"English"},
@@ -33,7 +36,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
       setUserIdText(User_information_id);
       setUserEmailText(User_information_email);
       
-      navigation.navigate('Home');
+      navigation.navigate('Tabbarroot');
     }
     else{
       console.log("entrye değer gir")
@@ -50,12 +53,9 @@ const handleButtonPress_theme = async () => {
 }
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
-
         <Text>Login Screen</Text>
-        
         <Button title="Change theme" onPress={handleButtonPress_theme} />
         <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
-
         <Text>---------------------</Text>
         {Object.keys(lngs).map((lng)=>(
           <Button title={lng} key={lng} onPress={()=>i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}></Button>
@@ -73,7 +73,7 @@ const handleButtonPress_theme = async () => {
       <Text>------------------</Text>
        <Button
           title="Go to Forgot"
-          onPress={() => navigation.navigate('Forgot')}
+          onPress={() => navigation.navigate('Stackroot')}
         />
       </View>
 

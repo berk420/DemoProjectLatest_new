@@ -8,8 +8,9 @@ import { useBackHandler } from '@react-native-community/hooks';
 import { user_photo } from "../services/loginServices";
 import { Int32 } from "react-native/Libraries/Types/CodegenTypes";
 import { useAppContext } from "../context/AppContext";
+import { tabbartype } from "../../Tabbarroot";
 
-type DetailScreenProps = NativeStackScreenProps<stacktype, 'Detail'>;
+type DetailScreenProps = NativeStackScreenProps<tabbartype, 'Detail'>;
 
 const DetailScreen = ({route,navigation}: DetailScreenProps) => 
 {

@@ -18,41 +18,39 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { WiserContextProvider } from './src/context/AppContext';
 import './src/locales/index'
 import Tabbarroot from './Tabbarroot';
-import Stackroot from './Stackroot';
 
 export type stacktype = {
-  Tabbarroot:undefined
-  Stackroot:undefined,
+  ForgotScreen: undefined,
+  LoginScreen:undefined,
 }
 
 const Stack = createNativeStackNavigator<stacktype>();
-
-function App() {
+function Stackroot() {
   return (
     <WiserContextProvider>
-      <NavigationContainer>
-        <Stack.Navigator >
-        <Stack.Screen name="Stackroot" component={Stackroot}
-                options={({ navigation, route }) => ({
-                headerBackTitleVisible: false,
-                headerShown: false,
-                tabBarVisible: false,
-                headerTitle: "null",
-                headerStyle: {
-                  backgroundColor: '#808080',
-                }})}/>
-          <Stack.Screen name="Tabbarroot" component={Tabbarroot}
-                options={({ navigation, route }) => ({
-                headerBackTitleVisible: false,
-                headerShown: false,
-                tabBarVisible: false,
-                headerTitle: "null",
-                headerStyle: {
-                  backgroundColor: '#808080',
-                }})}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </WiserContextProvider>
+      <Stack.Navigator initialRouteName='LoginScreen'>
+         <Stack.Screen name="LoginScreen" component={LoginScreen} 
+            options={({ navigation, route }) => ({
+            headerBackTitleVisible: false,
+            headerShown: false,
+            tabBarVisible: false,
+            headerTitle: "Login Screen",
+            headerStyle: {
+              backgroundColor: '#808080',
+            }})}/>
+
+          <Stack.Screen name="ForgotScreen" component={ForgotScreen}
+            options={({ navigation, route }) => ({
+            headerShown: false,
+            tabBarVisible: false,
+            headerBackTitleVisible: false,
+            headerTitle: "Forgot Password Screen",
+            headerStyle: {
+              backgroundColor: '#808080',
+            }})}/>
+      
+       </Stack.Navigator>
+      </WiserContextProvider>
   );
 }
 
@@ -79,6 +77,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Stackroot;
 
 

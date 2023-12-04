@@ -3,14 +3,15 @@ import axios,{AxiosResponse} from "axios";
 import {User} from "../../interfaces";
 import {useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { stacktype, tabbartype } from "../../App";
+import { stacktype } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useBackHandler } from '@react-native-community/hooks';
+import { tabbartype } from "../../Tabbarroot";
 
 
-type HomeScreenProps = NativeStackScreenProps<tabbartype, 'MyProfile'>;
+type MyProfileScreenProps = NativeStackScreenProps<tabbartype, 'MyProfile'>;
 
-const MyProfileScreen = ({navigation}: HomeScreenProps) => {
+const MyProfileScreen = ({navigation}: MyProfileScreenProps) => {
 
   const[userData,setUserData] = useState<User[]>([]);
   

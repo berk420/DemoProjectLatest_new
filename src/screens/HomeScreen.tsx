@@ -8,9 +8,10 @@ import route from "./LoginScreen";
 import { useBackHandler } from '@react-native-community/hooks';
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
+import { tabbartype } from "../../Tabbarroot";
 
 
-type HomeScreenProps = NativeStackScreenProps<stacktype, 'Home'>;
+type HomeScreenProps = NativeStackScreenProps<tabbartype, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   const{userEmail, setUserEmailText} = useAppContext();
