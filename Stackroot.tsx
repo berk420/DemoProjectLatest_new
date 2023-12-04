@@ -22,9 +22,12 @@ import Tabbarroot from './Tabbarroot';
 export type stacktype = {
   ForgotScreen: undefined,
   LoginScreen:undefined,
+  Stackroot:undefined,
+  Tabbarroot:undefined,
 }
-
+//Stack'in içinden tabbar'ın açacağımız için stacktype'a tab bar'ı da tanımlamamız gerekiyor
 const Stack = createNativeStackNavigator<stacktype>();
+
 function Stackroot() {
   return (
     <WiserContextProvider>

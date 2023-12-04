@@ -22,8 +22,10 @@ import './src/locales/index'
 export type tabbartype={
   Home:undefined,
   Detail:undefined,
-  MyProfile:undefined;
+  MyProfile:undefined,
+  Tabbarroot:undefined,
 }
+//tab bar'ın içinden de drawer açılacak oyüzden  buraya drawer da konulabilir
 
 const Tab = createBottomTabNavigator<tabbartype>();
 
@@ -49,7 +51,7 @@ function Tabbarroot() {
                 headerStyle: {
                 backgroundColor: '#808080',
                 }})}/>
-            <Tab.Screen name="Detail" component={DetailScreen}
+        <Tab.Screen name="Detail" component={DetailScreen}
                 options={({ navigation, route }) => ({
                 headerBackTitleVisible: false,
                 headerShown: false,

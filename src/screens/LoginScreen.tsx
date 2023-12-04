@@ -9,7 +9,6 @@ import i18n from "i18next";
 import Tabbarroot from '../../Tabbarroot';
 import Stackroot from '../../Stackroot';
 
-
 const lngs={
   en:{nativeName:"English"},
   tr:{nativeName:"Türkçe"}}
@@ -22,10 +21,10 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const{userid,setUserIdText}=useAppContext();
   const{theme, setThemeText}=useAppContext();
   const[lang,setlang]=useState("en");
-  
   const {t} = useTranslation();
 
   const handleButtonPress = async () => { 
+    
     const all_User_data = await login();
     const User_information = all_User_data.find((user: { email: string; }) => user.email === email);
     const User_information_email = User_information?.email || null;
@@ -35,7 +34,6 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
       console.log(User_information_id);
       setUserIdText(User_information_id);
       setUserEmailText(User_information_email);
-      
       navigation.navigate('Tabbarroot');
     }
     else{
@@ -51,6 +49,7 @@ const handleButtonPress_theme = async () => {
     setThemeText('light')
   }
 }
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',margin: 0 }}>
         <Text>Login Screen</Text>
@@ -124,15 +123,12 @@ const styles = StyleSheet.create({
       marginVertical: 10
   },
   loginContainer: {
-
-
   },
   text: {
       textAlign: 'center',
       fontSize: 18
 
   },
-
   checkboxField: {
       display: 'flex',
       flexDirection: 'row',

@@ -31,7 +31,7 @@ function App() {
   return (
     <WiserContextProvider>
       <NavigationContainer>
-        <Stack.Navigator >
+        <Stack.Navigator>
         <Stack.Screen name="Stackroot" component={Stackroot}
                 options={({ navigation, route }) => ({
                 headerBackTitleVisible: false,
