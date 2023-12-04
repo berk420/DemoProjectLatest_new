@@ -27,6 +27,7 @@ export type RootStackParamList = {
 }
 
 export type tabbartype={
+  
   Home:{user_data:User, all_user_data:User[] },
   Detail:{user_mail:string},
   MyProfile:undefined;
