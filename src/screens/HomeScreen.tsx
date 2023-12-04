@@ -1,6 +1,6 @@
-import { Button, Text, TextInput, View,StyleSheet,FlatList, TouchableOpacity, BackHandler } from "react-native";
+import { Button, Text, TextInput, View,StyleSheet,ScrollView,FlatList,RefreshControl, TouchableOpacity, BackHandler, Alert } from "react-native";
 import axios,{AxiosResponse} from "axios";
-import {useContext, useEffect,useState} from 'react';
+import {useCallback, useContext, useEffect,useState} from 'react';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { stacktype } from "../../App";
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -9,15 +9,51 @@ import { useBackHandler } from '@react-native-community/hooks';
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
 import { tabbartype } from "../../Tabbarroot";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 type HomeScreenProps = NativeStackScreenProps<tabbartype, 'Home'>;
 
 const HomeScreen = ({route,navigation}: HomeScreenProps) => {
+  const[sayı,setsayı]=useState(1);
   const{userEmail, setUserEmailText} = useAppContext();
   const{userid,setUserIdText}=useAppContext();
   const{theme, setThemeText}=useAppContext();
   const {t} = useTranslation();
+  const[time,settime]=useState(0.0);
+
+  const [refreshing, setRefreshing] =useState(false);
+  const onRefresh = useCallback(() => {
+
+    let startTime = performance.now()
+
+    setTimeout(() => {
+      setsayı(0);
+    }, 1000);
+    
+    let endTime = performance.now()
+
+    settime(endTime - startTime);
+
+    console.log(`Call to doSomething took ${endTime - startTime} milliseconds.`);
+
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, endTime - startTime);
+
+  }, []);
+  
+
+  const refreshHandler = () => {
+    console.log("Refresh");
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  }
+
 
 
   useBackHandler(() => {
@@ -27,31 +63,47 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   });
     
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
+    <SafeAreaView>
+
+    <ScrollView contentContainerStyle={{paddingVertical:100}}
+    refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={refreshHandler} />}>
         
-        <Button
-          title="Go to Detail"
-          onPress={() => navigation.navigate('Detail')}/>
-
-        <Text>-------------------------------------</Text>
-        <Text>{t("wiserSenseLocalization.Language")}</Text>
-        <Text>-------------------------------------</Text>
-
-      </View>
+      <View style={styles.container}>
         <View style={styles.container}>
-          <Text>Details Screen</Text>
-          <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
-            <Text>store dan geliyor</Text>      
-            <Text>name:{userEmail}</Text>
-            <Text>id:{userid}</Text>
+          <Text>Home Screen</Text>
+          <Text style={theme=="dark" ? styles.darkText: styles.whiteText}>Hello</Text>
+          
+          <Button
+            title="Go to Detail"
+            onPress={() => navigation.navigate('Detail')}/>
 
-            <Text>--------------------------</Text>
+          <Text>-------------------------------------</Text>
+          <Text>{t("wiserSenseLocalization.Language")}</Text>
+          <Text>-------------------------------------</Text>
+
+          <Text style={{ fontSize: 20 }}>{sayı}</Text>
+          <Button
+            title="Arttır"
+            onPress={() =>setsayı(sayı+1)}
+          />
+          <Text>-------------------------------------</Text>
+
+
+        </View>
+          <View style={styles.container}>
+            <Text>Details Screen</Text>
+            <View style={ {flex: 1,alignItems: 'center', justifyContent: 'center'}}>
+              <Text>store dan geliyor</Text>      
+              <Text>name:{userEmail}</Text>
+              <Text>id:{userid}</Text>
+
+              <Text>--------------------------</Text>
+            </View>
           </View>
         </View>
-      </View>
+    </ScrollView>
+    </SafeAreaView>
   )
 }
 
@@ -64,6 +116,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
   },
+
   item: {
     backgroundColor: '#f9c2ff',
     padding: 20,
