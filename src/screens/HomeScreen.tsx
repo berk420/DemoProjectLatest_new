@@ -53,9 +53,6 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
       setRefreshing(false);
     }, 1000);
   }
-
-
-
   useBackHandler(() => {
     // Geri düğmesine basıldığında uygulamadan çıkın
     BackHandler.exitApp();
@@ -64,11 +61,9 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
     
   return (
     <SafeAreaView>
-
     <ScrollView contentContainerStyle={{paddingVertical:100}}
     refreshControl={
       <RefreshControl refreshing={refreshing} onRefresh={refreshHandler} />}>
-        
       <View style={styles.container}>
         <View style={styles.container}>
           <Text>Home Screen</Text>
