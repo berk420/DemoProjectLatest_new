@@ -10,6 +10,8 @@ import HomeScreen from './src/screens/HomeScreen';
 import DetailScreen from './src/screens/DetailScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import MyProfileScreen from './src/screens/MyProfileScreen';
+import MyAssetsScreen from './src/screens/MyAssetsScreen';
+
 //import DrawerScreen from './src/screens/DrawerScreen';
 import { DrawerContent, DrawerContentScrollView, DrawerItem, createDrawerNavigator } from '@react-navigation/drawer';
 import { getHeaderTitle } from '@react-navigation/elements';
@@ -24,6 +26,7 @@ export type tabbartype={
   Detail:undefined,
   MyProfile:undefined,
   Tabbarroot:undefined,
+  MyAssets:undefined,
 }
 //tab bar'ın içinden de drawer açılacak oyüzden  buraya drawer da konulabilir
 
@@ -52,6 +55,15 @@ function Tabbarroot() {
                 backgroundColor: '#808080',
                 }})}/>
         <Tab.Screen name="Detail" component={DetailScreen}
+                options={({ navigation, route }) => ({
+                headerBackTitleVisible: false,
+                headerShown: false,
+                tabBarVisible: false,
+                headerTitle: "detail Screen",
+                headerStyle: {
+                  backgroundColor: '#808080',
+                }})}/>
+        <Tab.Screen name="MyAssets" component={MyAssetsScreen}
                 options={({ navigation, route }) => ({
                 headerBackTitleVisible: false,
                 headerShown: false,

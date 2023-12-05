@@ -22,28 +22,21 @@ const HomeScreen = ({route,navigation}: HomeScreenProps) => {
   const{theme, setThemeText}=useAppContext();
   const {t} = useTranslation();
   const[time,settime]=useState(0.0);
-
   const [refreshing, setRefreshing] =useState(false);
+
   const onRefresh = useCallback(() => {
-
     let startTime = performance.now()
-
     setTimeout(() => {
       setsayı(0);
     }, 1000);
-    
     let endTime = performance.now()
-
     settime(endTime - startTime);
-
     console.log(`Call to doSomething took ${endTime - startTime} milliseconds.`);
-
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
     }, endTime - startTime);
-
-  }, []);
+ }, []);
   
 
   const refreshHandler = () => {
